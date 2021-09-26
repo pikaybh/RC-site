@@ -31,7 +31,7 @@ function draw() {
 
 /* c */
 function calcC() {
-    let alpha, phi_u, epsilon_s, epsilon_s_C, epsilon_y, c, C_c, C_s, T_s;
+    let alpha, phi_u, epsilon_s, epsilon_sB, epsilon_s_C, epsilon_s_CB, epsilon_y, c, C_c, C_s, T_s;
     let h = document.getElementById("h").value;
     let d = document.getElementById("d").value;
     let d_C = document.getElementById("d_C").value;
@@ -67,6 +67,18 @@ function calcC() {
         }
     }
 
+    if (epsilon_s > epsilon_y) {
+        epsilon_sB = "✔";
+    } else {
+        epsilon_sB = "❌";
+    }
+    
+    if (epsilon_s_C > epsilon_y) {
+        epsilon_s_CB = "✔";
+    } else {
+        epsilon_s_CB = "❌";
+    }
+
     let M_n = C_c*((h/2)-(alpha/2)) + T_s*(d-(h/2)) + C_s*((h/2-d_C));
     console.log("곡률(phi_u) = " + financial2(phi_u*100000).toLocaleString('ko-KR').replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "e-5");
     console.log("인장철근 변형률(epsilon_s) = " + financial3(epsilon_s).toLocaleString('ko-KR'));
@@ -92,7 +104,7 @@ function calcC() {
     ctx.closePath();
 
     document.getElementById("answer").innerHTML = "<div></div>";
-    document.getElementById("answer").innerHTML = "<div><div class='i'>곡률(phi_u) = " + (financial2(phi_u*100000)).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "e-5</div><div class='i'>인장철근 변형률(epsilon_s) = " + (financial3(epsilon_s)).toLocaleString('ko-KR') + "</div><div class='i'>중립축(c) = " + (financial3(c)).toLocaleString('ko-KR') + "mm</div><div class='i'>인장력(T_s) = " + (financial2(T_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c + C_s) = " + (financial2(C_c + C_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c) = " + (financial2(C_c)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_s) = " + (financial2(C_s)).toLocaleString('ko-KR') + "N</div><div class='i'>공칭모멘트(M_n) = " + (financial1(M_n*0.0000001)).toLocaleString('ko-KR') + "kNm</div></div>";
+    document.getElementById("answer").innerHTML = "<div><div class='i'>곡률(φ_u) = " + (financial2(phi_u*100000)).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "e-5</div><div class='i'>인장철근 변형률(ε_s) = " + (financial3(epsilon_s)).toLocaleString('ko-KR') + " " + epsilon_sB + "</div><div class='i'>압축철근 변형률(ε_s') = " + financial3(epsilon_s_C).toLocaleString('ko-KR') + " " + epsilon_s_CB + "</div><div class='i'>항복변형률(ε_y) = " + (financial3(epsilon_y)).toLocaleString('ko-KR') + "</div><div class='i'>중립축(c) = " + (financial3(c)).toLocaleString('ko-KR') + "mm</div><div class='i'>인장력(T_s) = " + (financial2(T_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c + C_s) = " + (financial2(C_c + C_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c) = " + (financial2(C_c)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_s) = " + (financial2(C_s)).toLocaleString('ko-KR') + "N</div><div class='i'>공칭모멘트(M_n) = " + (financial1(M_n*0.0000001)).toLocaleString('ko-KR') + "kNm</div></div>";
 }
 
 /* await */
