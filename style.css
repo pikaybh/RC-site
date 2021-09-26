@@ -13,12 +13,22 @@ article {
     align-content: center;
 }
 
-h1 h2 {
-    margin: auto;
+h1 {
+    font-size: larger;
+    margin: 20px auto;
+}
+
+h2 {
+    font-size: large;
+    margin: 0 auto 20px auto;
 }
 
 form {
     max-width: 320px;
+}
+
+li {
+    margin: 8px auto;
 }
 
 input {
@@ -28,4 +38,8 @@ input {
 .frame {
     width: 320px;
     height: 320px;
+}
+
+.i {
+    margin: 8px auto;
 }

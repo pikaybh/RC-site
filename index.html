@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>철근콘크리트 설계</title>
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <script defer src="main.js" type="text/javascript"></script>
 </head>
@@ -15,23 +16,43 @@
         <h1>철근콘크리트 설계</h1>
         <h2>단면해석해주는 사이트</h2>
         <form action="main.js">
-            <span>너비(b)</span> <input class="w" id="w" type="number" placeholder="400" onfocus="this.value='400'"
+            <ul>
+                <li>
+                    <span>너비(b)</span> <input class="w" id="w" type="number" placeholder="400" onfocus="this.value='400'"
                 onkeyup="draw()" onclick="draw()" /><span>mm</span><br>
-            <span>높이(h)</span><input class="h" id="h" type="number" placeholder="600" onfocus="this.value='600'"
-                onkeyup="draw()" onclick="draw()" /><span>mm</span><br>
-            <span>유효깊이(d)</span> <input class="d" id="d" type="number" placeholder="580" onfocus="this.value='580'"
-                onkeyup="draw()" onclick="draw()" /><span>mm</span><br>
-            <span>(β)</span> <input class="beta" id="beta" type="number" placeholder="0.85"
-                onfocus="this.value='0.85'" /><span></span><br>
-            <span>인장철근(A_s)</span><input class="A_s" id="A_s" type="number" placeholder="3,600"
-                onfocus="this.value='3600'" /><span>mm^2</span><br>
-            <span>인장철근강도(f_y)</span> <input class="f_y" id="f_y" type="number" placeholder="400"
-                onfocus="this.value='400'" /><span>MPa</span><br>
-            <span>철근 탄성계수(E_s)</span><input class="E_s" id="E_s" type="number" placeholder="200,000"
-                onfocus="this.value='200000'" /><span>MPa</span><br>
-            <span>압축콘크리트강도(f_ck)</span><input class="f_ck" id="f_ck" type="number" placeholder="24"
-                onfocus="this.value='24'" /><span>MPa</span><br>
-            <input class="btn" type="button" onclick="calcC()" value="휨강도 구하기">
+                </li>
+                <li>
+                    <span>높이(h)</span><input class="h" id="h" type="number" placeholder="600" onfocus="this.value='600'"
+                    onkeyup="draw()" onclick="draw()" /><span>mm</span>
+                </li>
+                <li>
+                    <span>유효깊이(d)</span> <input class="d" id="d" type="number" placeholder="580" onfocus="this.value='580'"
+                onkeyup="draw()" onclick="draw()" /><span>mm</span>
+                </li>
+                <li>
+                    <span>(β)</span> <input class="beta" id="beta" type="number" placeholder="0.85"
+                onfocus="this.value='0.85'" /><span></span>
+                </li>
+                <li>
+                    <span>인장철근(A_s)</span><input class="A_s" id="A_s" type="number" placeholder="3,600"
+                onfocus="this.value='3600'" /><span>mm^2</span>
+                </li>
+                <li>
+                    <span>인장철근강도(f_y)</span> <input class="f_y" id="f_y" type="number" placeholder="400"
+                onfocus="this.value='400'" /><span>MPa</span>
+                </li>
+                <li>
+                    <span>철근 탄성계수(E_s)</span><input class="E_s" id="E_s" type="number" placeholder="200,000"
+                onfocus="this.value='200000'" /><span>MPa</span>
+                </li>
+                <li>
+                    <span>압축콘크리트강도(f_ck)</span><input class="f_ck" id="f_ck" type="number" placeholder="24"
+                onfocus="this.value='24'" /><span>MPa</span>
+                </li>
+                <li>
+                    <input class="btn" type="button" onclick="calcC()" value="휨강도 구하기">
+                </li>
+            </ul>
         </form>
         <div class="frame">
             <canvas id="myCanvas" width="0" height="0"></canvas>            
