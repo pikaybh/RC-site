@@ -17,7 +17,7 @@ article {
 
 @media screen and (max-width:600px) {
     article {
-        max-width: 320px;
+        max-width: 350px;
     }
 }
 
@@ -75,4 +75,9 @@ input {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.answer {
+    width: 320px;
+    height: 320px;
 }

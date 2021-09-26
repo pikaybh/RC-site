@@ -74,11 +74,16 @@ function calcC() {
     ctx.stroke();
     ctx.closePath();
 
-    hide("loader");
-
     document.getElementById("answer").innerHTML = "<div></div>";
     document.getElementById("answer").innerHTML = "<div><div class='i'>곡률(phi_u) = " + financial2(phi_u*100000) + "e-5</div><div class='i'>인장철근 변형률(epsilon_s) = " + financial3(epsilon_s) + "</div><div class='i'>중립축(c) = " + financial2(c) + "mm</div><div class='i'>인장력(T_s) = " + T_s + "N</div><div class='i'>압축력(C_c) = " + financial2(C_c) + "N</div><div class='i'>공칭모멘트(M_n) = " + financial1(M_n*0.0000001) + "kNm</div><div class='i'></div><div class='i'></div></div>";
 }
+
+/* await */
+/*function wait () {
+    show("loader");
+    var z = await calcC();
+    hide("loader");
+}*/
 
 /* 반올림 */
 function financial1(x) {
