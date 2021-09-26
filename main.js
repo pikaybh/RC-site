@@ -31,33 +31,50 @@ function draw() {
 
 /* c */
 function calcC() {
-    let alpha, phi_u, epsilon_s, epsilon_y, c, C_c, T_s;
+    let alpha, phi_u, epsilon_s, epsilon_s_C, epsilon_y, c, C_c, C_s, T_s;
     let h = document.getElementById("h").value;
     let d = document.getElementById("d").value;
+    let d_C = document.getElementById("d_C").value;
     let beta = document.getElementById("beta").value;
     let A_s = document.getElementById("A_s").value;
+    let A_s_C = document.getElementById("A_s_C").value;
     let b = document.getElementById("w").value;
     let f_ck = document.getElementById("f_ck").value;
     let f_y = document.getElementById("f_y").value;
     let E_s = document.getElementById("E_s").value;
     epsilon_y = f_y/E_s;
     C_c = 0;
+    C_s = 0;
     T_s = 0.0000001;
 
-    for (c = 0; C_c <= T_s; c+=0.0001) { //Number.parseFloat(C_c).toFixed(2)
-        phi_u = 0.003 / c;
-        epsilon_s = phi_u * (d - c);
-        alpha = beta * c;
-        T_s = f_y * A_s;
-        C_c = beta * f_ck * b * alpha;
+    if (A_s_C == 0) {
+        for (c = 0; C_c <= T_s; c+=0.0001) {
+            phi_u = 0.003 / c;
+            epsilon_s = phi_u * (d - c);
+            alpha = beta * c;
+            T_s = f_y * A_s;
+            C_c = beta * f_ck * b * alpha;
+        }
+    } else {
+        for (c = 0; C_c + C_s <= T_s; c+=0.0001) {
+            phi_u = 0.003 / c;
+            epsilon_s = phi_u * (d - c);
+            epsilon_s_C = phi_u * (c - d_C);
+            alpha = beta * c;
+            T_s = f_y * A_s;
+            C_c = beta * f_ck * b * alpha;
+            C_s = E_s * epsilon_s_C * A_s_C;
+        }
     }
 
-    let M_n = C_c*((h/2)-(alpha/2)) + T_s*(d-(h/2));
+    let M_n = C_c*((h/2)-(alpha/2)) + T_s*(d-(h/2)) + C_s*((h/2-d_C));
     console.log("곡률(phi_u) = " + financial2(phi_u*100000).toLocaleString('ko-KR').replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "e-5");
     console.log("인장철근 변형률(epsilon_s) = " + financial3(epsilon_s).toLocaleString('ko-KR'));
+    console.log("압축철근 변형률(epsilon_s') = " + financial3(epsilon_s_C).toLocaleString('ko-KR'));
     console.log("중립축(c) = " + financial2(c).toLocaleString('ko-KR') + "mm");
     console.log("인장력(T_s) = " + T_s.toLocaleString('ko-KR') + "N");
     console.log("압축력(C_c) = " + financial2(C_c).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "N");
+    console.log("압축력(C_s) = " + C_s.toLocaleString('ko-KR') + "N");
     console.log("공칭모멘트(M_n) = " + financial1(M_n*0.0000001).toLocaleString('ko-KR') + "kNm");
 
     let canvas = document.getElementById("myCanvas");
@@ -75,7 +92,7 @@ function calcC() {
     ctx.closePath();
 
     document.getElementById("answer").innerHTML = "<div></div>";
-    document.getElementById("answer").innerHTML = "<div><div class='i'>곡률(phi_u) = " + financial2(phi_u*100000).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "e-5</div><div class='i'>인장철근 변형률(epsilon_s) = " + financial3(epsilon_s).toLocaleString('ko-KR') + "</div><div class='i'>중립축(c) = " + financial2(c).toLocaleString('ko-KR') + "mm</div><div class='i'>인장력(T_s) = " + financial2(T_s).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c) = " + financial2(C_c).toLocaleString('ko-KR') + "N</div><div class='i'>공칭모멘트(M_n) = " + financial1(M_n*0.0000001).toLocaleString('ko-KR') + "kNm</div><div class='i'></div><div class='i'></div></div>";
+    document.getElementById("answer").innerHTML = "<div><div class='i'>곡률(phi_u) = " + (financial2(phi_u*100000)).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "e-5</div><div class='i'>인장철근 변형률(epsilon_s) = " + (financial3(epsilon_s)).toLocaleString('ko-KR') + "</div><div class='i'>중립축(c) = " + (financial3(c)).toLocaleString('ko-KR') + "mm</div><div class='i'>인장력(T_s) = " + (financial2(T_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c + C_s) = " + (financial2(C_c + C_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c) = " + (financial2(C_c)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_s) = " + (financial2(C_s)).toLocaleString('ko-KR') + "N</div><div class='i'>공칭모멘트(M_n) = " + (financial1(M_n*0.0000001)).toLocaleString('ko-KR') + "kNm</div></div>";
 }
 
 /* await */
