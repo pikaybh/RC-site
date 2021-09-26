@@ -43,6 +43,10 @@ input {
     max-width: 150px;
 }
 
+.foo {
+    padding: 20px;
+}
+
 .frame {
     width: 320px;
     height: 320px;
