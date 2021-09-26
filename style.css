@@ -19,10 +19,10 @@ h1 h2 {
 }
 
 form {
-    max-width: 550px;
+    max-width: 320px;
 }
 
 .frame {
-    width: 550px;
-    height: 550px;
+    width: 320px;
+    height: 320px;
 }
