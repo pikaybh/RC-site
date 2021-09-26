@@ -11,7 +11,6 @@ article {
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
-
 }
 
 h1 h2 {
@@ -20,6 +19,10 @@ h1 h2 {
 
 form {
     max-width: 320px;
+}
+
+input {
+    max-width: 150px;
 }
 
 .frame {
