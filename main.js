@@ -44,7 +44,7 @@ function calcC() {
     C_c = 0;
     T_s = 0.0000001;
 
-    for (c = 150; C_c <= T_s; c+=0.00001) { //Number.parseFloat(C_c).toFixed(2)
+    for (c = 0; C_c <= T_s; c+=0.00001) { //Number.parseFloat(C_c).toFixed(2)
         phi_u = 0.003 / c;
         epsilon_s = phi_u * (d - c);
         alpha = beta * c;
