@@ -16,3 +16,8 @@ article {
 h1 h2 {
     margin: auto;
 }
+
+.frame {
+    width: 550px;
+    height: 550px;
+}
