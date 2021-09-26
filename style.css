@@ -22,16 +22,19 @@ article {
 }
 
 h1 {
+    text-align: center;
     font-size: larger;
     margin: 20px auto;
 }
 
 h2 {
+    text-align: center;
     font-size: large;
     margin: 0 auto 20px auto;
 }
 
 form {
+    text-align: end;
     max-width: 320px;
 }
 
@@ -43,15 +46,12 @@ input {
     max-width: 150px;
 }
 
-.foo {
-    margin: 20px;
-}
-
 .frame {
     width: 320px;
     height: 320px;
 }
 
 .i {
+    text-align: end;
     margin: 8px auto;
 }
