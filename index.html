@@ -51,12 +51,16 @@
                             onfocus="this.value='24'" /><span>MPa</span>
                     </li>
                     <li>
-                        <input class="btn" type="button" onclick="calcC()" value="휨강도 구하기">
+                        <input class="btn" type="button" onclick="show('loader'); calcC();" value="휨강도 구하기">
                     </li>
                 </ul>
             </form>
             <div class="frame">
                 <canvas id="myCanvas" width="0" height="0"></canvas>
+            </div>
+
+            <div class="loader-box">
+                <div class="loader" id="loader"></div>
             </div>
 
             <section class="answer" id="answer">

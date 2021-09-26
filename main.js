@@ -44,7 +44,7 @@ function calcC() {
     C_c = 0;
     T_s = 0.0000001;
 
-    for (c = 0; C_c <= T_s; c+=0.00001) { //Number.parseFloat(C_c).toFixed(2)
+    for (c = 0; C_c <= T_s; c+=0.0001) { //Number.parseFloat(C_c).toFixed(2)
         phi_u = 0.003 / c;
         epsilon_s = phi_u * (d - c);
         alpha = beta * c;
@@ -74,6 +74,8 @@ function calcC() {
     ctx.stroke();
     ctx.closePath();
 
+    hide("loader");
+
     document.getElementById("answer").innerHTML = "<div></div>";
     document.getElementById("answer").innerHTML = "<div><div class='i'>곡률(phi_u) = " + financial2(phi_u*100000) + "e-5</div><div class='i'>인장철근 변형률(epsilon_s) = " + financial3(epsilon_s) + "</div><div class='i'>중립축(c) = " + financial2(c) + "mm</div><div class='i'>인장력(T_s) = " + T_s + "N</div><div class='i'>압축력(C_c) = " + financial2(C_c) + "N</div><div class='i'>공칭모멘트(M_n) = " + financial1(M_n*0.0000001) + "kNm</div><div class='i'></div><div class='i'></div></div>";
 }
@@ -89,4 +91,15 @@ function financial2(x) {
 
 function financial3(x) {
     return Number.parseFloat(x).toFixed(3);
+}
+
+/* hide & show */
+function hide(foo) {
+    var elem = document.getElementById(foo);
+    elem.style.display = 'none';
+}
+
+function show(foo) {
+    var elem = document.getElementById(foo);
+    elem.style.display = 'block';
 }
