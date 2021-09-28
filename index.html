@@ -17,6 +17,10 @@
             <h1>철근콘크리트 설계</h1>
             <h2>단면해석해주는 사이트</h2>
             <form action="main.js">
+                <span>단근보</span><input type="radio" name="rcstyle" id="solo" onclick="radio()" checked/>
+                <span> | 복근보1단</span><input type="radio" name="rcstyle" id="duo1" onclick="radio()"/>
+                <span> | 복근보2단</span><input type="radio" name="rcstyle" id="duo2" onclick="radio()"/>
+                
                 <ul>
                     <li>
                         <span>너비(b)</span> <input class="w" id="w" type="number" placeholder="400"
@@ -26,25 +30,29 @@
                         <span>높이(h)</span><input class="h" id="h" type="number" placeholder="600"
                             onfocus="this.value='600'" onkeyup="draw()" onclick="draw()" /><span>mm</span>
                     </li>
-                    <li>
-                        <span>인장철근측 유효깊이(d)</span> <input class="d" id="d" type="number" placeholder="580"
+                    <li id="DS1">
+                        <span id='D_sN'>인장철근측 유효깊이(d)</span> <input class="d" id="d" type="number" placeholder="580"
                             onfocus="this.value='580'" onkeyup="draw()" onclick="draw()" /><span>mm</span>
                     </li>
-                    <li>
-                        <span>압축철근측 유효깊이(d')</span> <input class="d_C" id="d_C" type="number" placeholder="20"
-                            onfocus="this.value='20'" onkeyup="draw()" onclick="draw()" /><span>mm</span>
+                    <li id="DS2">
+                        <span></span>
+                    </li>
+                    <li id="DC">
+                        <span></span>
                     </li>
                     <li>
-                        <span>(β)</span> <input class="beta" id="beta" type="number" placeholder="0.85"
+                        <span>(β_1)</span> <input class="beta" id="beta" type="number" placeholder="0.85"
                             onfocus="this.value='0.85'" /><span></span>
                     </li>
-                    <li>
-                        <span>인장철근(A_s)</span><input class="A_s" id="A_s" type="number" placeholder="3,600"
+                    <li id="AS1">
+                        <span id='A_sN'>인장철근(A_s)</span><input class="A_s" id="A_s" type="number" placeholder="3,600"
                             onfocus="this.value='3600'" /><span>mm^2</span>
                     </li>
-                    <li>
-                        <span>압축철근(A_s')</span><input class="A_s_C" id="A_s_C" type="number" placeholder="900"
-                            onfocus="this.value='900'" /><span>mm^2</span>
+                    <li id="AS2">
+                        <span></span>
+                    </li>
+                    <li id="ASC">
+                        <span></span>
                     </li>
                     <li>
                         <span>인장철근강도(f_y)</span> <input class="f_y" id="f_y" type="number" placeholder="400"

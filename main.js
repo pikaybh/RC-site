@@ -1,3 +1,45 @@
+/* radio */
+function radio() {
+    var solo = document.getElementById("solo");
+    var duo1 = document.getElementById("duo1");
+    var duo2 = document.getElementById("duo2");
+    
+    var ds2 = document.getElementById("DS2");
+    var dc = document.getElementById("DC");
+    var dsN = document.getElementById("D_sN");
+    var as2 = document.getElementById("AS2");
+    var asc = document.getElementById("ASC");
+    var asN = document.getElementById("A_sN");
+
+    if (solo.checked) {
+        ds2.style.display = "none";
+        dc.style.display = "none";
+        dsN.innerHTML = "<span class='D_sN'>인장철근측 유효깊이(d)</span>";
+        as2.style.display = "none";
+        asc.style.display = "none";
+        asN.innerHTML = "<span class='A_sN'>인장철근(A_s)</span>";
+    } else if (duo1.checked) {
+        ds2.style.display = "none";
+        dc.style.display = "block";
+        dc.childNodes[1].innerHTML = "<span>압축철근측 유효깊이(d')</span> <input class='d_C' id='d_C' type='number' placeholder='20' onfocus='this.value='20'' onkeyup='draw()' onclick='draw()' /><span>mm</span>";
+        dsN.innerHTML = "<span class='D_sN'>인장철근측 유효깊이(d)</span>";
+        as2.style.display = "none";
+        asc.style.display = "block";
+        asc.childNodes[1].innerHTML = "<span>압축철근(A_s')</span><input class='A_s_C' id='A_s_C' type='number' placeholder='900' onfocus='this.value='900'' /><span>mm^2</span>";
+        asN.innerHTML = "<span class='A_sN'>인장철근(A_s)</span>";
+    } else if (duo2.checked) {
+        ds2.style.display = "block";
+        ds2.childNodes[1].innerHTML = "<span>인장철근측 유효깊이(d_2)</span> <input class='d' id='d' type='number' placeholder='580'onfocus='this.value='580'' onkeyup='draw()' onclick='draw()' /><span>mm</span>";
+        dc.style.display = "block";
+        dc.childNodes[1].innerHTML = "<span>압축철근측 유효깊이(d')</span> <input class='d_C' id='d_C' type='number' placeholder='20' onfocus='this.value='20'' onkeyup='draw()' onclick='draw()' /><span>mm</span>";
+        dsN.innerHTML = "<span class='D_sN'>인장철근측 유효깊이(d_1)</span>";
+        as2.style.display = "block";
+        as2.childNodes[1].innerHTML = "<span>인장철근(A_s2)</span><input class='A_s_2' id='A_s_2' type='number' placeholder='600' onfocus='this.value='600'' /><span>mm^2</span>";
+        asc.style.display = "block";
+        asc.childNodes[1].innerHTML = "<span>압축철근(A_s')</span><input class='A_s_C' id='A_s_C' type='number' placeholder='900' onfocus='this.value='900'' /><span>mm^2</span>";
+        asN.innerHTML = "<span class='A_sN'>인장철근(A_s1)</span>";
+    }
+}
 
 /* draw canvas */
 function draw() {
