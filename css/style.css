@@ -166,12 +166,60 @@ input {
     100% { transform: rotate(360deg); }
 }
 
+.btn-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.all-in-one-btn {
+    border-radius: 50px !important;
+    width: 100px;
+    max-height: 100px;
+    margin: 0 0 0 5px;
+}
+
+.pm-btn {
+    max-width: 150px !important;
+    width: 140px;
+}
+
+.btn {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 4px 6px;
+    max-width: 100px;
+    cursor: pointer;
+}
+
+.rho-btn {
+    background-color: white;
+}
+
+.yield-btn {
+    background-color: pink;
+}
+
+.cr-btn {
+    background-color: skyblue;
+}
+
 .answer {
     width: 320px;
     height: 320px;
 }
 
 .answerS {
+    width: 320px;
+    height: 160px;
+}
+
+.answerCr {
+    width: 320px;
+    height: 160px;
+}
+
+.answerY {
     width: 320px;
     height: 160px;
 }

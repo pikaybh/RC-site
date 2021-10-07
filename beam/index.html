@@ -75,10 +75,23 @@
                             onfocus="this.value='24'" /><span>MPa</span>
                     </li>
                     <li>
-                        <input class="btn" type="button" onclick="calculatingS();" value="철근비 구하기">
-                    </li>
-                    <li>
-                        <input class="btn" type="button" onclick="calculating();" value="휨강도 구하기">
+                        <div class="btn-div">
+                            <ul>
+                                <li>
+                                    <input class="rho-btn btn" type="button" onclick="calculatingS();" value="철근비 구하기">
+                                </li>
+                                <li>
+                                    <input class="cu-btn btn" type="button" onclick="calculating();" value="휨강도 구하기">
+                                </li>
+                                <li>
+                                    <input class="yield-btn btn" type="button" onclick="calculatingY();" value="항복점 구하기">
+                                </li>
+                                <li>
+                                    <input class="cr-btn btn" type="button" onclick="calculatingCr();" value="균열점 구하기">
+                                </li>
+                            </ul>
+                            <input class="all-in-one-btn btn" type="button" onclick="calcAll()" value="전부 구하기">
+                        </div>
                     </li>
                 </ul>
             </form>
@@ -97,6 +110,14 @@
             </div>
 
             <div class="answer" id="answer">
+                <div></div>
+            </div>
+            
+            <div class="answerY" id="answerY">
+                <div></div>
+            </div>
+
+            <div class="answerCr" id="answerCr">
                 <div></div>
             </div>
         </section>
