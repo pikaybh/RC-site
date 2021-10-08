@@ -323,8 +323,9 @@ async function calcY() {
             console.log("T_s : " + T_s);
 
             let M_y = C_c * ((h / 2) - (c / 3)) + T_s * (d - (h / 2));
+            console.log("M_y : " + M_y);
             document.getElementById("answerY").innerHTML = "<div></div>";
-            document.getElementById("answerY").innerHTML = "<div><div class='i'>곡률(φ_y) = " + (financial2(phi_y * 1000000)).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "e-6/mm</div><div class='i' style='color:pink;'>중립축(c) = " + (financial3(c)).toLocaleString('ko-KR') + "mm</div><div class='i'>인장력(T_s) = " + (financial2(T_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c) = " + (financial2(C_c)).toLocaleString('ko-KR') + "N</div><div class='i'>항복 공칭모멘트(M_y) = " + (financial1(M_y * 0.000001)).toLocaleString('ko-KR') + "kN·m</div></div>";
+            document.getElementById("answerY").innerHTML = "<div><div class='i'>곡률(φ_y) = " + (financial2(phi_y * 1000000)).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "e-6/mm</div><div class='i' style='color:pink;'>중립축(c) = " + (financial3(c)).toLocaleString('ko-KR') + "mm</div><div class='i'>인장력(T_s) = " + (financial2(T_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c) = " + (financial2(C_c)).toLocaleString('ko-KR') + "N</div><div class='i'>항복 공칭모멘트(M_y) = " + ((M_y * 0.000001)).toLocaleString('ko-KR') + "kN·m</div></div>";
 
         } else if (duo1.checked) {
             /* 복근보 1단 */
@@ -349,10 +350,11 @@ async function calcY() {
             console.log("C_c : " + C_c);
             console.log("C_s : " + C_s);
             console.log("T_s : " + T_s);
+            console.log("M_y : " + M_y);
 
             let M_y = C_c * ((h / 2) - (c / 3)) + C_s*((h/2)-d_C) + T_s * (d - (h / 2));
             document.getElementById("answerY").innerHTML = "<div></div>";
-            document.getElementById("answerY").innerHTML = "<div><div class='i'>곡률(φ_y) = " + (financial2(phi_y * 1000000)).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "e-6/mm</div><div class='i' style='color:pink;'>중립축(c) = " + (financial3(c)).toLocaleString('ko-KR') + "mm</div><div class='i'>인장력(T_s) = " + (financial2(T_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c) = " + (financial2(C_c)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_s) = " + (financial2(C_s)).toLocaleString('ko-KR') + "N</div><div class='i'>항복 공칭모멘트(M_y) = " + (financial1(M_y * 0.000001)).toLocaleString('ko-KR') + "kN·m</div></div>";
+            document.getElementById("answerY").innerHTML = "<div><div class='i'>곡률(φ_y) = " + (financial2(phi_y * 1000000)).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "e-6/mm</div><div class='i' style='color:pink;'>중립축(c) = " + (financial3(c)).toLocaleString('ko-KR') + "mm</div><div class='i'>인장력(T_s) = " + (financial2(T_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c) = " + (financial2(C_c)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_s) = " + (financial2(C_s)).toLocaleString('ko-KR') + "N</div><div class='i'>항복 공칭모멘트(M_y) = " + ((M_y * 0.000001)).toLocaleString('ko-KR') + "kN·m</div></div>";
 
         } else if (duo2.checked) {
             /* 복근보 2단 */
@@ -462,7 +464,7 @@ async function calcC() {
             console.log("중립축(c) = " + financial2(c).toLocaleString('ko-KR') + "mm");
             console.log("인장력(T_s) = " + T_s.toLocaleString('ko-KR') + "N");
             console.log("압축력(C_c) = " + financial2(C_c).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "N");
-            console.log("공칭모멘트(M_n) = " + financial1(M_n * 0.0000001).toLocaleString('ko-KR') + "kN·m");
+            console.log("공칭모멘트(M_n) = " + (M_n * 0.000001).toLocaleString('ko-KR') + "kN·m");
             console.log("(epsilon_t) = " + financial3(epsilon_t).toLocaleString('ko-KR'));
 
             document.getElementById("answer").innerHTML = "<div></div>";
@@ -516,7 +518,7 @@ async function calcC() {
             console.log("인장력(T_s) = " + T_s.toLocaleString('ko-KR') + "N");
             console.log("압축력(C_c) = " + financial2(C_c).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "N");
             console.log("압축력(C_s) = " + C_s.toLocaleString('ko-KR') + "N");
-            console.log("공칭모멘트(M_n) = " + financial1(M_n * 0.0000001).toLocaleString('ko-KR') + "kN·m");
+            console.log("공칭모멘트(M_n) = " + (M_n * 0.000001).toLocaleString('ko-KR') + "kN·m");
             console.log("(epsion_t) = " + financial3(epsilon_t).toLocaleString('ko-KR'));
 
             document.getElementById("answer").innerHTML = "<div></div>";
@@ -607,7 +609,7 @@ async function calcV() {
         console.log("V_s = " + V_s);
         console.log("V_n = " + V_n);
         document.getElementById("answerV").innerHTML = "<div></div>";
-        document.getElementById("answerV").innerHTML = "<div><div class='i'>콘크리트 전단강도(V_c) = " + (financial1(V_c)).toLocaleString('ko-KR') + "N</div><div class='i'>스터럽 전단강도(V_s) = " + (financial1(V_s)).toLocaleString('ko-KR') + "kN·m</div><div class='i'>공칭전단강도(V_n) = " + (financial1(V_c * 0.001)).toLocaleString('ko-KR') + "kN</div></div>";    
+        document.getElementById("answerV").innerHTML = "<div><div class='i'>콘크리트 전단강도(V_c) = " + (financial1(V_c)).toLocaleString('ko-KR') + "N</div><div class='i'>스터럽 전단강도(V_s) = " + (financial1(V_s)).toLocaleString('ko-KR') + "N</div><div class='i'>공칭전단강도(V_n) = " + (financial1(V_c * 0.001)).toLocaleString('ko-KR') + "kN</div></div>";    
     } catch (error) {
         alert("공란이 있습니다!");
     }
