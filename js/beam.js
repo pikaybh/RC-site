@@ -154,6 +154,7 @@ async function calcRho() {
         let E_s = document.getElementById("E_s").value;
         epsilon_y = f_y / E_s;
         epsilon_all = 2*epsilon_y;
+        console.log("★철근비 구하기★");
         console.log(typeof(epsilon_all) + ", " + epsilon_all);
 
         /*최소철근비*/
@@ -226,6 +227,7 @@ async function calcCr() {
         let h = document.getElementById("h").value;
         let b = document.getElementById("w").value;
         let f_ck = document.getElementById("f_ck").value;
+        console.log("★균열점 구하기★");
         if(f_ck<=40) {
             delta_f = 4;
         } else if(f_ck>=60) {
@@ -286,6 +288,7 @@ async function calcY() {
         }
         E_c = 8500*(Math.cbrt(f_ck*1 + delta_f*1));
         epsilon_y = f_y / E_s;
+        console.log("★항복점 구하기★");
         C_c = 0;
         C_s = 0;
         T_s = 0.0000001;
@@ -401,6 +404,7 @@ async function calcC() {
         let f_y = document.getElementById("f_y").value;
         let E_s = document.getElementById("E_s").value;
         epsilon_y = f_y / E_s;
+        console.log("★휨강도 구하기★");
         C_c = 0;
         C_s = 0;
         T_s = 0.0000001;
