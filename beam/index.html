@@ -81,6 +81,9 @@
                                     <input class="rho-btn btn" type="button" onclick="calculatingS();" value="철근비 구하기">
                                 </li>
                                 <li>
+                                    <input class="v-btn btn" type="button" onclick="calculatingV();" value="전단강도 구하기">
+                                </li>
+                                <li>
                                     <input class="cu-btn btn" type="button" onclick="calculating();" value="휨강도 구하기">
                                 </li>
                                 <li>
@@ -100,13 +103,17 @@
                 <canvas id="myCanvas" width="0" height="0"></canvas>
             </div>
 
+            <div class="loader-box">
+                <div class="loader" id="loader"></div>
+                <span class="loaderText" id="loaderText">계산 중입니다...</span>
+            </div>
+
             <div class="answerS" id="answerS">
                 <div></div>
             </div>
 
-            <div class="loader-box">
-                <div class="loader" id="loader"></div>
-                <span class="loaderText" id="loaderText">계산 중입니다...</span>
+            <div class="answerV" id="answerV">
+                <div></div>
             </div>
 
             <div class="answer" id="answer">
