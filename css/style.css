@@ -19,6 +19,7 @@ footer {
     justify-content: center;
     align-items: center;
     align-content: center;
+    margin-top: 30px;
 }
 
 .nav_btn {
@@ -81,8 +82,15 @@ footer {
 }
 
 article {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+section {
     height: 100%;
-    width: 100%;
+    width: 320px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -92,7 +100,7 @@ article {
 }
 
 @media screen and (max-width:600px) {
-    article {
+    section {
         max-width: 350px;
     }
 }
@@ -209,9 +217,14 @@ input {
     height: 320px;
 }
 
-.answerS {
+.answerV {
     width: 320px;
     height: 160px;
+}
+
+.answerS {
+    width: 320px;
+    height: 200px;
 }
 
 .answerCr {
@@ -221,5 +234,10 @@ input {
 
 .answerY {
     width: 320px;
-    height: 160px;
+    height: 200px;
+}
+
+.bold {
+    font-weight: bold;
+    text-align: end;
 }
