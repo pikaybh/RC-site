@@ -92,7 +92,7 @@ function calculating() {
 /* c */
 async function calcC() {
     try {
-        let f_s, f_s_C, alpha, phi, phi_u, epsilon_s, epsilon_sB, epsilon_s_C, epsilon_s_CB, epsilon_y, c, C_c, C_s, T_s, P_n, M_n;
+        let f_s, f_s_C, alpha, phi, phi_u, epsilon_s, epsilon_sB, epsilon_s_C, epsilon_s_CB, epsilon_y, A_g, A_st, c, C_c, C_s, T_s, P_n, M_n;
         let h = document.getElementById("h").value;
         let d = document.getElementById("d").value;
         let beta = document.getElementById("beta").value;
@@ -102,6 +102,7 @@ async function calcC() {
         let f_y = document.getElementById("f_y").value;
         let E_s = document.getElementById("E_s").value;
         epsilon_y = f_y / E_s;
+        A_g = b*h;
         C_c = 0;
         C_s = 0;
         T_s = 0.0000001;
@@ -204,6 +205,7 @@ async function calcC() {
             /* 복근보 1단 */
             let d_C = document.getElementById("d_C").value;
             let A_s_C = document.getElementById("A_s_C").value;
+            A_st = A_s*1 + A_s_C*1;
 
             /*M_n = 0.001;
             for (epsilon_s = 0.003; 0 <= M_n; epsilon_s += -0.0001) {
@@ -230,19 +232,31 @@ async function calcC() {
             }*/
 
             //[Doc]domination(string, 'epsilon_s', list(n));
-            domination("인장지배", (5*epsilon_y), 2);
-            domination("균형파괴", (epsilon_y), 3);
-            domination("압축지배", 0, 4);
+            domination("순수인장", 0.1, 3);
+            momentDomination("순수휨", 4);
+            domination("인장지배", (5*epsilon_y), 5);
+            domination("균형파괴", (epsilon_y), 6);
+            domination("압축지배", 0, 7);
+            domination("순수압축", -0.003, 8);
 
             function domination(foo, epsilonS, bar) {
                 //곡률, 변형률
                 epsilon_s = epsilonS;
                 c = (0.003/(epsilon_s + 0.003))*d;
-                phi_u = 0.003/c;
-                epsilon_s_C = phi_u * (c - d_C);
+                if (c == Infinity) {
+                    phi_u = 0;
+                    epsilon_s_C = epsilon_s;
+                } else {
+                    phi_u = 0.003/c;
+                    epsilon_s_C = phi_u * (c - d_C);
+                }
 
                 //응력
-                alpha = beta * c;
+                if (c > h) {
+                    alpha = beta * h;
+                } else {
+                    alpha = beta * c;
+                }
                 f_s = E_s*epsilon_s;
                 f_s_C = E_s*epsilon_s_C;
                 if (f_s>400) {
@@ -256,8 +270,57 @@ async function calcC() {
                 T_s = f_s * A_s;
                 C_c = beta * f_ck * b * alpha;
                 C_s = f_s_C * A_s_C;
-                P_n = C_c + C_s - T_s;
+                if (c == Infinity) {
+                    P_n = beta*f_ck*(A_g-A_st) + f_y*A_st;
+                } else {
+                    P_n = C_c + C_s - T_s;
+                }
                 M_n = C_c * ((h / 2) - (alpha / 2)) + T_s * (d - (h / 2)) + C_s * ((h / 2 - d_C));
+
+                console.log("★" + foo + "★");
+                console.log("E_s = " + E_s);
+                console.log("epsion_y = " + epsilon_y);
+                console.log("epsion_s = " + epsilon_s);
+                console.log("epsion'_s = " + epsilon_s_C);
+                console.log("c = " + c + "mm");
+                console.log("phi_u = " + phi_u + "/mm");
+                console.log("f_s = " + f_s + "MPa");
+                console.log("f'_s = " + financial1(f_s_C) + "MPa");
+                console.log("C_c = " + financial1(C_c) + "N");
+                console.log("C_s = " + financial1(C_s) + "N");
+                console.log("T_s = " + financial1(T_s) + "N");
+                console.log("P_n = " + financial1(P_n * 0.001) + "kN");
+                console.log("M_n = " + financial1(M_n * 0.000001) + "kN·m");
+
+                document.getElementById("answer").childNodes[bar].innerHTML = "<div><div class='i'>" + foo + " : " + financial1(P_n * 0.001) + "kN &#9;" + financial1(M_n * 0.000001) + "kN·m</div></div>";    
+            }
+
+            function momentDomination(foo, bar) {
+                //복근보
+                for (c = 0; C_c + C_s < T_s; c += 0.0001) {
+                    phi_u = 0.003 / c;
+                    epsilon_s = phi_u * (d - c);
+                    epsilon_s_C = phi_u * (c - d_C);
+                    alpha = beta * c;
+                    T_s = f_y * A_s;
+                    C_c = beta * f_ck * b * alpha;
+                    C_s = E_s * epsilon_s_C * A_s_C;
+                }
+
+                if (epsilon_s > epsilon_y) {
+                    epsilon_sB = "✔";
+                } else {
+                    epsilon_sB = "❌";
+                }
+
+                if (epsilon_s_C > epsilon_y) {
+                    epsilon_s_CB = "✔";
+                } else {
+                    epsilon_s_CB = "❌";
+                }
+
+                let P_n = C_c + C_s - T_s;
+                let M_n = C_c * ((h / 2) - (alpha / 2)) + T_s * (d - (h / 2)) + C_s * ((h / 2 - d_C));
 
                 console.log("★" + foo + "★");
                 console.log("E_s = " + E_s);
@@ -329,6 +392,10 @@ async function calcC() {
 
             document.getElementById("answer").innerHTML = "<div></div>";
             document.getElementById("answer").innerHTML = "<div><div class='i'>곡률(φ_u) = " + (financial2(phi_u * 100000)).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "e-5/mm</div><div class='i'>인장철근 변형률(ε_s) = " + (financial3(epsilon_s)).toLocaleString('ko-KR') + " " + epsilon_sB + "</div><div class='i'>압축철근 변형률(ε_s') = " + financial3(epsilon_s_C).toLocaleString('ko-KR') + " " + epsilon_s_CB + "</div><div class='i'>항복변형률(ε_y) = " + (financial3(epsilon_y)).toLocaleString('ko-KR') + "</div><div class='i' style='color: grey;'>중립축(c) = " + (financial3(c)).toLocaleString('ko-KR') + "mm</div><div class='i'>인장력(T_s) = " + (financial2(T_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c + C_s) = " + (financial2(C_c + C_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c) = " + (financial2(C_c)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_s) = " + (financial2(C_s)).toLocaleString('ko-KR') + "N</div><div class='i'>공칭모멘트(M_n) = " + (financial1(M_n * 0.000001)).toLocaleString('ko-KR') + "kNm</div><div class='i'>강도감소계수(φ)" + (financial3(phi)).toLocaleString('ko-KR') + "</div></div>";
+        }
+
+        function momentDomination() {
+
         }
 
 
