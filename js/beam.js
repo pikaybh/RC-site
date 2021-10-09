@@ -591,7 +591,7 @@ async function calcC() {
 /* 전단설계 */
 async function calcV() {
     try {
-        let V_c, V_s, V_n;
+        let M_n, P_nf, P_ns, V_c, V_s, V_n;
         let h = document.getElementById("h").value;
         let d = document.getElementById("d").value;
         let beta = document.getElementById("beta").value;
