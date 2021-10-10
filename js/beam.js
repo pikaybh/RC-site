@@ -180,6 +180,9 @@ async function calcRho() {
 
         /* 최대철근비 */
         let iA_s, iEpsilon_s;
+        if(epsilon_all < 400) {
+            epsilon_all = 400;
+        }
         iEpsilon_s = 1;
         for(iA_s=100; iEpsilon_s>epsilon_all; iA_s++) {
             C_c = 0;
