@@ -86,11 +86,9 @@ function calcAll() {
         calcCr().then(() => {
             calcY().then(() => {
                 calcC().then(() => {
-                    calcV().then(() => {
                     console.log("Calculating Finish");
                     document.getElementById("loader").style.display = "none";
                     document.getElementById("loaderText").style.display = "none";
-                });
                 });
             });
         });
@@ -286,7 +284,7 @@ async function calcCr() {
 /* 항복점 구하기 */
 async function calcY() {
     try {
-        let phi_y, delta_f, epsilon_cm, epsilon_s, epsilon_s_C, f_cm, f_s, f_s_C, E_c, c, C_c, C_s, T_s;
+        let phi_y, delta_f, epsilon_cm, epsilon_s, epsilon_s_C, f_cm, f_s, f_s_C, E_c, c, C_c, C_s, T_s, P_nf, P_ns, V_c, V_s, V_n;
         let h = document.getElementById("h").value;
         let d = document.getElementById("d").value;
         let A_s = document.getElementById("A_s").value;
@@ -414,11 +412,14 @@ async function calcC() {
         let alpha, phi, phi_u, epsilon_s, epsilon_sB, epsilon_s_C, epsilon_s_CB, epsilon_y, c, C_c, C_s, T_s;
         let h = document.getElementById("h").value;
         let d = document.getElementById("d").value;
+        let s = document.getElementById("s").value;
         let beta = document.getElementById("beta").value;
         let A_s = document.getElementById("A_s").value;
+        let A_v = document.getElementById("A_v").value;
         let b = document.getElementById("w").value;
         let f_ck = document.getElementById("f_ck").value;
         let f_y = document.getElementById("f_y").value;
+        let f_yv = document.getElementById("f_yv").value;
         let E_s = document.getElementById("E_s").value;
         epsilon_y = f_y / E_s;
         console.log("★휨강도 구하기★");
@@ -571,6 +572,18 @@ async function calcC() {
             document.getElementById("answer").innerHTML = "<div><div class='i'>곡률(φ_u) = " + (financial2(phi_u * 100000)).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + "e-5/mm</div><div class='i'>인장철근 변형률(ε_s) = " + (financial3(epsilon_s)).toLocaleString('ko-KR') + " " + epsilon_sB + "</div><div class='i'>압축철근 변형률(ε_s') = " + financial3(epsilon_s_C).toLocaleString('ko-KR') + " " + epsilon_s_CB + "</div><div class='i'>항복변형률(ε_y) = " + (financial3(epsilon_y)).toLocaleString('ko-KR') + "</div><div class='i' style='color: grey;'>중립축(c) = " + (financial3(c)).toLocaleString('ko-KR') + "mm</div><div class='i'>인장력(T_s) = " + (financial2(T_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c + C_s) = " + (financial2(C_c + C_s)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_c) = " + (financial2(C_c)).toLocaleString('ko-KR') + "N</div><div class='i'>압축력(C_s) = " + (financial2(C_s)).toLocaleString('ko-KR') + "N</div><div class='i'>공칭모멘트(M_n) = " + (financial1(M_n * 0.000001)).toLocaleString('ko-KR') + "kN·m</div><div class='i'>강도감소계수(φ)" + (financial3(phi)).toLocaleString('ko-KR') + "</div></div>";
         }
 
+        /*전단설계*/
+        V_c = (1/6)*(Math.sqrt(f_ck))*b*d;
+        V_s = A_v*f_yv*(d/s);
+        V_n = V_c + V_s;
+        console.log("★전단강도 구하기★");
+        console.log("V_c = " + V_c);
+        console.log("V_s = " + V_s);
+        console.log("V_n = " + V_n);
+        document.getElementById("answerV").innerHTML = "<div></div>";
+        document.getElementById("answerV").innerHTML = "<div><div class='bold'>전단설계</div><div class='i'>콘크리트 전단강도(V_c) = " + (financial1(V_c)).toLocaleString('ko-KR') + "N</div><div class='i'>스터럽 전단강도(V_s) = " + (financial1(V_s)).toLocaleString('ko-KR') + "N</div><div class='i'>공칭전단강도(V_n) = " + (financial1(V_n * 0.001)).toLocaleString('ko-KR') + "kN</div></div>";    
+
+
 
         let canvas = document.getElementById("myCanvas");
         let ctx = canvas.getContext("2d");
@@ -591,7 +604,7 @@ async function calcC() {
     }
 }
 
-/* 전단설계 */
+/* 전단설계 
 async function calcV() {
     try {
         let M_n, P_nf, P_ns, V_c, V_s, V_n;
@@ -618,4 +631,4 @@ async function calcV() {
     } catch (error) {
         alert("공란이 있습니다!");
     }
-} 
+} */
