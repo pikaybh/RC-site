@@ -579,7 +579,7 @@ async function calcC() {
         V_c = (1/6)*(Math.sqrt(f_ck))*b*d;
         V_s = A_v*f_yv*(d/s);
         V_n = V_c + V_s;
-        P_nf = (2*M_n)/l_s;
+        P_nf = (2*M_n)/(l_s/1000);
         P_ns = 2*V_n
         let destroy;
         if (P_nf < P_ns) {
