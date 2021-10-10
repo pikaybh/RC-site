@@ -167,7 +167,6 @@ async function calcRho() {
         epsilon_y = f_y / E_s;
         epsilon_all = 2*epsilon_y;
         console.log("★철근비 구하기★");
-        console.log("all : " + epsilon_all);
         console.log(typeof(epsilon_all) + ", " + epsilon_all);
 
         /*최소철근비*/
@@ -184,7 +183,6 @@ async function calcRho() {
         if(epsilon_all < 0.004) {
             epsilon_all = 0.004;
         }
-        console.log("all : " + epsilon_all);
         iEpsilon_s = 1;
         for(iA_s=100; iEpsilon_s>epsilon_all; iA_s++) {
             C_c = 0;
@@ -599,22 +597,24 @@ async function calcV() {
         let M_n, P_nf, P_ns, V_c, V_s, V_n;
         let h = document.getElementById("h").value;
         let d = document.getElementById("d").value;
+        let s = document.getElementById("s").value;
         let beta = document.getElementById("beta").value;
-        let A_s = document.getElementById("A_s").value;
+        let A_v = document.getElementById("A_v").value;
         let b = document.getElementById("w").value;
         let f_ck = document.getElementById("f_ck").value;
         let f_y = document.getElementById("f_y").value;
+        let f_yv = document.getElementById("f_yv").value;
         let E_s = document.getElementById("E_s").value;
         epsilon_y = f_y / E_s;
         V_c = (1/6)*(Math.sqrt(f_ck))*b*d;
-        V_s = 0;
+        V_s = A_v*f_yv*(d/s);
         V_n = V_c + V_s;
         console.log("★전단강도 구하기★");
         console.log("V_c = " + V_c);
         console.log("V_s = " + V_s);
         console.log("V_n = " + V_n);
         document.getElementById("answerV").innerHTML = "<div></div>";
-        document.getElementById("answerV").innerHTML = "<div><div class='bold'>전단설계</div><div class='i'>콘크리트 전단강도(V_c) = " + (financial1(V_c)).toLocaleString('ko-KR') + "N</div><div class='i'>스터럽 전단강도(V_s) = " + (financial1(V_s)).toLocaleString('ko-KR') + "N</div><div class='i'>공칭전단강도(V_n) = " + (financial1(V_c * 0.001)).toLocaleString('ko-KR') + "kN</div></div>";    
+        document.getElementById("answerV").innerHTML = "<div><div class='bold'>전단설계</div><div class='i'>콘크리트 전단강도(V_c) = " + (financial1(V_c)).toLocaleString('ko-KR') + "N</div><div class='i'>스터럽 전단강도(V_s) = " + (financial1(V_s)).toLocaleString('ko-KR') + "N</div><div class='i'>공칭전단강도(V_n) = " + (financial1(V_n * 0.001)).toLocaleString('ko-KR') + "kN</div></div>";    
     } catch (error) {
         alert("공란이 있습니다!");
     }

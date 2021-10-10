@@ -49,6 +49,10 @@
                         <span></span>
                     </li>
                     <li>
+                        <span id='S'>스터럽 간격(s) </span> <input class="s" id="s" type="number" placeholder="300"
+                            onfocus="this.value='300'" onkeyup="draw()" onclick="draw()" /><span>mm</span>
+                    </li>
+                    <li>
                         <span>(β_1) </span> <input class="beta" id="beta" type="number" placeholder="0.85"
                             onfocus="this.value='0.85'" /><span></span>
                     </li>
@@ -63,8 +67,16 @@
                         <span></span>
                     </li>
                     <li>
+                        <span>전단철근(A_v) </span><input class="A_v" id="A_v" type="number" placeholder="600"
+                            onfocus="this.value='600'" /><span>mm^2</span>
+                    </li>
+                    <li>
                         <span>인장철근강도(f_y) </span> <input class="f_y" id="f_y" type="number" placeholder="400"
                             onfocus="this.value='400'" /><span>MPa</span>
+                    </li>
+                    <li>
+                        <span>인장철근강도(f_yv) </span> <input class="f_yv" id="f_yv" type="number" placeholder="300"
+                            onfocus="this.value='300'" /><span>MPa</span>
                     </li>
                     <li>
                         <span>철근 탄성계수(E_s) </span><input class="E_s" id="E_s" type="number" placeholder="200,000"
