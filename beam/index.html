@@ -40,7 +40,7 @@
                     </li>
                     <li id="DS1">
                         <span id='D_sN'>인장철근측 유효깊이(d) </span> <input class="d" id="d" type="number" placeholder="580"
-                            onfocus="this.value='580'" onkeyup="draw()" onclick="draw()" /><span>mm</span>
+                            onfocus="this.value='580'" onfocusout="imsi()" onkeyup="draw()" onclick="draw()" /><span>mm</span>
                     </li>
                     <li id="DS2">
                         <span></span>
@@ -49,8 +49,8 @@
                         <span></span>
                     </li>
                     <li>
-                        <span id='S'>스터럽 간격(s) </span> <input class="s" id="s" type="number" placeholder="300"
-                            onfocus="this.value='300'" onkeyup="draw()" onclick="draw()" /><span>mm</span>
+                        <span id='S'>스터럽 간격(s) </span> <input class="s" id="s" type="number" placeholder="290"
+                            onfocus="this.value='290';" onkeyup="draw(); imsi();" onclick="draw(); imsi();" /><span>mm</span>
                     </li>
                     <li>
                         <span>(l<sub>s</sub>) </span> <input class="l_s" id="l_s" type="number" placeholder="100"

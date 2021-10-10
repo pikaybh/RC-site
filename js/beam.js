@@ -1,3 +1,12 @@
+/* 스터럽 간격(s) 경고 */
+function imsi() {
+    let s = document.getElementById("s").value;
+    let d = document.getElementById("d").value;
+    if (1*s > 0.5*d) {
+        alert("스터럽 간격(s)는 유효깊이(d) 보다 커야 합니다!");
+    }
+}
+
 /* radio */
 function radio() {
     var solo = document.getElementById("solo");
