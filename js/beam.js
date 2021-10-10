@@ -579,22 +579,22 @@ async function calcC() {
         V_c = (1/6)*(Math.sqrt(f_ck))*b*d;
         V_s = A_v*f_yv*(d/s);
         V_n = V_c + V_s;
-        P_nf = (2*M_n * 0.000001)/(l_s/1000);
+        P_nf = (2*M_n*0.001)/(l_s/1000);
         P_ns = 2*V_n
         let destroy;
         if (P_nf < P_ns) {
             destroy = "휨파괴";
-        } else if (P_nf == P_ns) {
-            destroy = "동시에 파괴";
-        } else {
+        } else if (P_nf > P_ns) {
             destroy = "전단파괴";
+        } else {
+            destroy = "동시에 파괴";
         }
         console.log("★전단강도 구하기★");
         console.log("V_c = " + V_c);
         console.log("V_s = " + V_s);
         console.log("V_n = " + V_n);
         document.getElementById("answerV").innerHTML = "<div></div>";
-        document.getElementById("answerV").innerHTML = "<div><div class='bold'>전단설계</div><div class='i'>콘크리트 전단강도(V<sub>c</sub>) = " + (financial1(V_c)).toLocaleString('ko-KR') + "N</div><div class='i'>스터럽 전단강도(V<sub>s</sub>) = " + (financial1(V_s)).toLocaleString('ko-KR') + "N</div><div class='i'>공칭전단강도(V<sub>n</sub>) = " + (financial1(V_n * 0.001)).toLocaleString('ko-KR') + "kN</div><div class='i'>휨파괴 하중(P<sub>nf</sub>) = " + (financial1(P_nf * 0.001)).toLocaleString('ko-KR') + "kN</div><div class='i'>전단파괴 하중(P<sub>ns</sub>) = " + (financial1(P_ns * 0.001)).toLocaleString('ko-KR') + "kN</div><div class='i'>이 부재는 <span class='bold'>" + destroy + "</span> 될 확률이 높다.</div></div>";    
+        document.getElementById("answerV").innerHTML = "<div><div class='bold'>전단설계</div><div class='i'>콘크리트 전단강도(V<sub>c</sub>) = " + (financial1(V_c)).toLocaleString('ko-KR') + "N</div><div class='i'>스터럽 전단강도(V<sub>s</sub>) = " + (financial1(V_s)).toLocaleString('ko-KR') + "N</div><div class='i'>공칭전단강도(V<sub>n</sub>) = " + (financial1(V_n * 0.001)).toLocaleString('ko-KR') + "kN</div><hr style='max-width:70%; margin-right:0;'/><div class='i'>휨파괴 하중(P<sub>nf</sub>) = " + (financial1(P_nf * 0.001)).toLocaleString('ko-KR') + "kN</div><div class='i'>전단파괴 하중(P<sub>ns</sub>) = " + (financial1(P_ns * 0.001)).toLocaleString('ko-KR') + "kN</div><div class='i'>이 부재는 <span class='bold'>" + destroy + "</span> 될 확률이 높다.</div></div>";    
 
 
 
