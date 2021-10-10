@@ -167,6 +167,7 @@ async function calcRho() {
         epsilon_y = f_y / E_s;
         epsilon_all = 2*epsilon_y;
         console.log("★철근비 구하기★");
+        console.log("all : " + epsilon_all);
         console.log(typeof(epsilon_all) + ", " + epsilon_all);
 
         /*최소철근비*/
@@ -180,9 +181,10 @@ async function calcRho() {
 
         /* 최대철근비 */
         let iA_s, iEpsilon_s;
-        if(epsilon_all < 400) {
-            epsilon_all = 400;
+        if(epsilon_all < 0.004) {
+            epsilon_all = 0.004;
         }
+        console.log("all : " + epsilon_all);
         iEpsilon_s = 1;
         for(iA_s=100; iEpsilon_s>epsilon_all; iA_s++) {
             C_c = 0;
